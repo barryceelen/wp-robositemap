@@ -1,0 +1,12 @@
+.CodeMirror {
+	text-align: left;
+}
+
+.CodeMirror-scroll {
+	min-height: 120px;
+}
+
+.CodeMirror {
+	height: auto;
+	border: 1px solid #ddd;
+}
