@@ -27,7 +27,11 @@ add_filter( 'robots_txt', __NAMESPACE__ . '\robositemap_robots_txt', 10, 2 );
  */
 function robositemap_sitemap() {
 
-	$request = esc_url_raw( $_SERVER['REQUEST_URI'] );
+	if ( empty( $_SERVER['REQUEST_URI'] ) ) { // WPCS: input var okay.
+		return;
+	}
+
+	$request = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ); // WPCS: input var okay.
 
 	if ( '/sitemap.xml' === $request ) {
 
@@ -39,7 +43,7 @@ function robositemap_sitemap() {
 
 			if ( $post ) {
 				header( 'Content-type: text/xml' );
-				echo $post->post_content;
+				echo $post->post_content; // WPCS: XSS ok.
 				die();
 			}
 		}

@@ -153,7 +153,7 @@ function save() {
 	current_user_can( 'manage_options' ) || die;
 	check_admin_referer( 'robositemap_save' );
 
-	$_post = stripslashes_deep( $_POST );
+	$_post = stripslashes_deep( $_POST ); // WPCS: input var okay.
 
 	$post_id_robots  = $_post['post_id_robots'];
 	$post_id_sitemap = $_post['post_id_sitemap'];
@@ -203,11 +203,13 @@ function save() {
 function add_plugin_action_link( $links ) {
 
 	if ( current_user_can( 'manage_options' ) ) {
+
 		$link = sprintf(
 			'<a href="%s">%s</a>',
 			admin_url( 'options-general.php?page=robositemap-settings' ),
 			esc_html__( 'Settings', 'multilocale' )
 		);
+
 		$links = array_merge( array( 'settings' => $link ), $links );
 	}
 

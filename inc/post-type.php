@@ -27,12 +27,12 @@ function register() {
 	);
 
 	$args = array(
-		'labels'             => $labels,
-		'public'             => false,
-		'publicly_queryable' => false,
-		'show_ui'            => false,
+		'labels'              => $labels,
+		'public'              => false,
+		'publicly_queryable'  => false,
+		'show_ui'             => false,
 		'capability_type'     => 'post',
-		'capabilities'     => array(
+		'capabilities'        => array(
 			'create_posts'           => 'manage_options',
 			'delete_others_posts'    => 'manage_options',
 			'delete_post'            => 'manage_options',
