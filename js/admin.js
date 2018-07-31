@@ -1,4 +1,8 @@
-( function( $, _ ) {
+jQuery( document ).ready( function() {
+
+	if ( 'undefined' === typeof wp.CodeMirror ) {
+		return;
+	}
 
 	wp.CodeMirror.fromTextArea( document.getElementById( 'js-robositemap-content-robots' ), {
 		lineNumbers: true,
@@ -10,4 +14,4 @@
 		mode: 'xml'
 	} );
 
-} )( jQuery );
+});
