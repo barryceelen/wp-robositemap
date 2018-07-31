@@ -24,6 +24,10 @@ add_action( 'admin_menu', __NAMESPACE__ . '\admin_menu' );
 // Process and save our data.
 add_action( 'admin_post_robositemap-save', __NAMESPACE__ . '\save' );
 
+// Add an action link pointing to the options page.
+$robositemap_plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . 'robositemap.php' );
+add_filter( 'plugin_action_links_' . $robositemap_plugin_basename, __NAMESPACE__ . '\add_plugin_action_link' );
+
 /**
  * Enqueue admin scripts.
  *
@@ -186,4 +190,26 @@ function save() {
 
 	wp_safe_redirect( esc_url_raw( $_post['_wp_http_referer'] ) . '&updated=true' );
 	exit;
+}
+
+/**
+ * Add a plugin settings link to the plugins page.
+ *
+ * @since 1.0.1
+ *
+ * @param array $links An array of action links.
+ * @return array Modified array of action links.
+ */
+function add_plugin_action_link( $links ) {
+
+	if ( current_user_can( 'manage_options' ) ) {
+		$link = sprintf(
+			'<a href="%s">%s</a>',
+			admin_url( 'options-general.php?page=robositemap-settings' ),
+			esc_html__( 'Settings', 'multilocale' )
+		);
+		$links = array_merge( array( 'settings' => $link ), $links );
+	}
+
+	return $links;
 }

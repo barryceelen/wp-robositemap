@@ -11,7 +11,7 @@
  * Plugin Name: Robositemap
  * Plugin URI: https://github.com/barryceelen/wp-robositemap
  * Description: Manually edit your robots.txt and sitemap.xml file from the WordPress admin.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Text Domain: robositemap
  * Author: Barry Ceelen
  * Author URI: https://github.com/barryceelen
